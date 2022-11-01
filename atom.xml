@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>samuluo</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="/"/>
+  <updated>2022-10-31T15:11:00.432Z</updated>
+  <id>/</id>
+  
+  <author>
+    <name>samuluo</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【动态规划1】01背包，完全背包与多重背包</title>
+    <link href="/2021/10/12/algrithm_dp/"/>
+    <id>/2021/10/12/algrithm_dp/</id>
+    <published>2021-10-12T14:16:01.000Z</published>
+    <updated>2022-10-31T15:11:00.432Z</updated>
+    
+    <summary type="html">
+    
+      hexo-sakura主题使用教程
+    
+    </summary>
+    
+      <category term="算法" scheme="/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="web" scheme="/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Cross-Spectrum 交叉频谱</title>
+    <link href="/2021/10/12/singal_stft/"/>
+    <id>/2021/10/12/singal_stft/</id>
+    <published>2021-10-12T14:16:01.000Z</published>
+    <updated>2022-10-31T14:14:21.186Z</updated>
+    
+    <summary type="html">
+    
+      信号处理基本方法
+    
+    </summary>
+    
+      <category term="研究" scheme="/categories/%E7%A0%94%E7%A9%B6/"/>
+    
+    
+      <category term="信号处理" scheme="/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【机器学习1】LR线性回归模型(linear regression)</title>
+    <link href="/2020/10/11/mechinelearning_LR/"/>
+    <id>/2020/10/11/mechinelearning_LR/</id>
+    <published>2020-10-11T14:16:01.000Z</published>
+    <updated>2022-10-31T13:56:05.569Z</updated>
+    
+    <summary type="html">
+    
+      hexo-sakura主题使用教程
+    
+    </summary>
+    
+      <category term="研究" scheme="/categories/%E7%A0%94%E7%A9%B6/"/>
+    
+    
+      <category term="机器学习" scheme="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo-Theme-Sakura</title>
+    <link href="/2018/12/12/Hexo-Theme-Sakura/"/>
+    <id>/2018/12/12/Hexo-Theme-Sakura/</id>
+    <published>2018-12-12T14:16:01.000Z</published>
+    <updated>2022-10-31T13:26:09.901Z</updated>
+    
+    <summary type="html">
+    
+      hexo-sakura主题使用教程
+    
+    </summary>
+    
+      <category term="转载" scheme="/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="web" scheme="/tags/web/"/>
+    
+      <category term="悦读" scheme="/tags/%E6%82%A6%E8%AF%BB/"/>
+    
+  </entry>
+  
+</feed>
