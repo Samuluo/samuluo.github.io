@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-11-04T07:27:05.013Z</updated>
+  <updated>2022-11-04T16:01:00.592Z</updated>
   <id>/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="/2022/10/12/mechinelearning_CVNN%E7%BD%91%E7%BB%9C/"/>
     <id>/2022/10/12/mechinelearning_CVNN网络/</id>
     <published>2022-10-12T14:16:01.000Z</published>
-    <updated>2022-11-04T07:27:05.013Z</updated>
+    <updated>2022-11-04T16:01:00.592Z</updated>
     
     <summary type="html">
     
@@ -32,27 +32,7 @@
       <category term="算法" scheme="/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="信号处理" scheme="/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
-    
       <category term="机器学习" scheme="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Cross-Spectrum 交叉频谱</title>
-    <link href="/2021/10/12/singal_stft/"/>
-    <id>/2021/10/12/singal_stft/</id>
-    <published>2021-10-12T14:16:01.000Z</published>
-    <updated>2022-10-31T14:14:21.186Z</updated>
-    
-    <summary type="html">
-    
-      信号处理基本方法
-    
-    </summary>
-    
-      <category term="研究" scheme="/categories/%E7%A0%94%E7%A9%B6/"/>
-    
     
       <category term="信号处理" scheme="/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
     
@@ -75,6 +55,26 @@
     
     
       <category term="web" scheme="/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Cross-Spectrum 交叉频谱</title>
+    <link href="/2021/10/12/singal_stft/"/>
+    <id>/2021/10/12/singal_stft/</id>
+    <published>2021-10-12T14:16:01.000Z</published>
+    <updated>2022-10-31T14:14:21.186Z</updated>
+    
+    <summary type="html">
+    
+      信号处理基本方法
+    
+    </summary>
+    
+      <category term="研究" scheme="/categories/%E7%A0%94%E7%A9%B6/"/>
+    
+    
+      <category term="信号处理" scheme="/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
