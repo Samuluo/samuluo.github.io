@@ -33,7 +33,7 @@ if (screen.width >= 768) {
 	]).then(() => {
 		// 配置选项的具体用法见 README.md
 		initWidget({
-			waifuPath: "https://samuluo.github.io/js/waifu-tips.json",
+			waifuPath: "http://cdn.para-dox.top/blog/live2d/waifu-tips.json",
 			//apiPath: "https://live2d.fghrsh.net/api/",
 			cdnPath: "https://fastly.jsdelivr.net/gh/fghrsh/live2d_api/",
 			tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]

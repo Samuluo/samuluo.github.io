@@ -380,24 +380,34 @@
       
       <!-- .entry-content -->
       
-<!-- <script src='https://unpkg.com/valine@1.5.1/dist/Valine.min.js'></script> -->
-<div id="vcomments"></div>
-<script>
-  window.onload = function(){
-      
-      //var valine = new Valine();
-      console.log("adafsdfgsfgfdg")
-      new Valine({
-        el: '#vcomments',
-        appId: "",
-        appKey: "",
-        //path: window.location.pathname,
-        //placeholder: "你是我一生只会遇见一次的惊喜 ..."
-      })
-  }
-</script>
 
 
+    <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+    <div id="waline"></div>
+    <style>
+    #waline textarea {
+        box-sizing: border-box;
+        background: url("https://gitee.com/cungudafa/source/raw/master/img/gif/Sitich/Sitich2.gif") 100% 100% no-repeat;
+    }
+    </style>
+    <script>
+        Waline({
+              el: '#waline',
+              serverURL: 'https://valine-dr66hk981-samuluo.vercel.app/',
+              pageSize: '10',
+              lang: 'zh-CN',
+              requiredFields: ['nick','mail'], //设置必填项
+              placeholder: '祝开开心心！',
+              visitor: 'true',
+              emoji: [
+                  'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba',
+                  'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
+                  'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo',
+              ],
+              avatar: 'mp',
+              dark: 'auto',
+            });
+    </script>
 
 
       <div class="single-reward">
