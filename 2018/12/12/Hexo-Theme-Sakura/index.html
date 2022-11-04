@@ -432,7 +432,7 @@
 <h2 id="1、主题下载安装"><a href="#1、主题下载安装" class="headerlink" title="1、主题下载安装"></a>1、主题下载安装</h2><p><a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" rel="noopener">hexo-theme-sakura</a>建议下载压缩包格式，因为除了主题内容还有些source的配置对新手来说比较太麻烦，直接下载解压就省去这些麻烦咯。</p>
 <p>下载好后解压到博客根目录（不是主题目录哦，重复的选择替换）。接着在命令行（cmd、bash）运行<code>npm i</code>安装依赖。</p>
 <h2 id="2、主题配置"><a href="#2、主题配置" class="headerlink" title="2、主题配置"></a>2、主题配置</h2><h3 id="博客根目录下的-config配置"><a href="#博客根目录下的-config配置" class="headerlink" title="博客根目录下的_config配置"></a>博客根目录下的_config配置</h3><p>站点</p>
-<pre><code class="yml"># Site
+<pre><code class="lang-yml"># Site
 title: 你的站点名
 subtitle:
 description: 站点简介
@@ -442,7 +442,7 @@ language: zh-cn
 timezone:
 </code></pre>
 <p>部署</p>
-<pre><code class="yml">deploy:
+<pre><code class="lang-yml">deploy:
   type: git
   repo: 
     github: 你的github仓库地址
@@ -450,17 +450,16 @@ timezone:
   branch: master
 </code></pre>
 <p>备份 （使用hexo b发布备份到远程仓库）</p>
-<pre><code class="yml">backup:
+<pre><code class="lang-yml">backup:
   type: git
   message: backup my blog of https://honjun.github.io/
   repository:
     # 你的github仓库地址,备份分支名  （建议新建backup分支）
     github: https://github.com/honjun/honjun.github.io.git,backup
     # coding: https://git.coding.net/hojun/hojun.git,backup
-
 </code></pre>
 <h3 id="主题目录下的-config配置"><a href="#主题目录下的-config配置" class="headerlink" title="主题目录下的_config配置"></a>主题目录下的_config配置</h3><p>其中标明【改】的是需要修改部门，标明【选】是可改可不改，标明【非】是不用改的部分</p>
-<pre><code class="yml"># site name
+<pre><code class="lang-yml"># site name
 # 站点名 【改】
 prefixName: さくら荘その
 siteName: hojun
@@ -585,7 +584,7 @@ v_appKey: mgOpfzbkHYqU92CV4IDlAUHQ
 <h2 id="分类页和标签页配置"><a href="#分类页和标签页配置" class="headerlink" title="分类页和标签页配置"></a>分类页和标签页配置</h2><h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a>分类页</h3><p><img src="https://ws3.sinaimg.cn/large/006bYVyvly1g07b0gucy9j31060jih76.jpg" alt></p>
 <h3 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h3><p><img src="https://wx2.sinaimg.cn/large/006bYVyvly1g07azb2399j31040jgazs.jpg" alt></p>
 <p>配置项在\themes\Sakura\languages\zh-cn.yml里。新增一个分类或标签最好加下哦，当然嫌麻烦可以直接使用一张默认图片（可以改主题或者直接把404图片替换下，征求下意见要不要给这个在配置文件中加个开关，可以issue或群里提出来），现在是没设置的话会使用那种倒立小狗404哦。</p>
-<pre><code class="yml">#category
+<pre><code class="lang-yml">#category
 # 按分类名创建
 技术:
     #中文标题
@@ -606,7 +605,7 @@ v_appKey: mgOpfzbkHYqU92CV4IDlAUHQ
     img: https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/banner/reading.jpg
 </code></pre>
 <h2 id="单页面封面配置"><a href="#单页面封面配置" class="headerlink" title="单页面封面配置"></a>单页面封面配置</h2><p><img src="https://ws3.sinaimg.cn/large/006bYVyvly1g07b1pi619j31080jge4u.jpg" alt><br>如留言板页面页面，位于source下的comment下，打开index.md如下：</p>
-<pre><code class="md">---
+<pre><code class="lang-md">---
 title: comment
 date: 2018-12-20 23:13:48
 keywords: 留言板
@@ -617,7 +616,7 @@ photos: https://cdn.jsdelivr.net/gh/honjun/cdn@1.4/img/banner/comment.jpg
 ---
 </code></pre>
 <h2 id="单页面配置"><a href="#单页面配置" class="headerlink" title="单页面配置"></a>单页面配置</h2><h3 id="番组计划页-（请直接在下载后的文件中改，下面的添加了注释可能会有些影响）"><a href="#番组计划页-（请直接在下载后的文件中改，下面的添加了注释可能会有些影响）" class="headerlink" title="番组计划页 （请直接在下载后的文件中改，下面的添加了注释可能会有些影响）"></a>番组计划页 （请直接在下载后的文件中改，下面的添加了注释可能会有些影响）</h3><p><img src="https://wx2.sinaimg.cn/large/006bYVyvly1g07b2gyx60j31090jjahj.jpg" alt></p>
-<pre><code class="yml">---
+<pre><code class="lang-yml">---
 layout: bangumi
 title: bangumi
 comments: false
@@ -649,7 +648,7 @@ bangumis:
 ---
 </code></pre>
 <h3 id="友链页-（请直接在下载后的文件中改，下面的添加了注释可能会有些影响）"><a href="#友链页-（请直接在下载后的文件中改，下面的添加了注释可能会有些影响）" class="headerlink" title="友链页 （请直接在下载后的文件中改，下面的添加了注释可能会有些影响）"></a>友链页 （请直接在下载后的文件中改，下面的添加了注释可能会有些影响）</h3><p><img src="https://ws3.sinaimg.cn/large/006bYVyvly1g07b39tleej31080jhjv1.jpg" alt></p>
-<pre><code class="yml">---
+<pre><code class="lang-yml">---
 layout: links
 title: links
 # 创建日期，可以改下
@@ -695,11 +694,11 @@ links:
 ---
 </code></pre>
 <h2 id="写文章配置"><a href="#写文章配置" class="headerlink" title="写文章配置"></a>写文章配置</h2><p>主题集成了个人插件hexo-tag-bili和hexo-tag-fancybox_img。其中hexo-tag-bili用来在文章或单页面中插入B站外链视频，使用语法如下：</p>
-<pre><code class="md">{% bili video_id [page] %}
+<pre><code class="lang-md">{% bili video_id [page] %}
 </code></pre>
 <p>详细使用教程详见<a href="https://github.com/honjun/hexo-tag-bili/blob/master/README-zh_cn.md" target="_blank" rel="noopener">hexo-tag-bili</a>。</p>
 <p>hexo-tag-fancybox_img用来在文章或单页面中图片，使用语法如下：</p>
-<pre><code class="md">{% fb_img src [caption] %}
+<pre><code class="lang-md">{% fb_img src [caption] %}
 </code></pre>
 <p>详细使用教程详见<a href="https://github.com/honjun/hexo-tag-fancybox_img/blob/master/README-zh_cn.md" target="_blank" rel="noopener">hexo-tag-fancybox_img</a></p>
 <h2 id="还有啥，一时想不起来……"><a href="#还有啥，一时想不起来……" class="headerlink" title="还有啥，一时想不起来……"></a>还有啥，一时想不起来……</h2><p>To be continued…</p>
@@ -855,6 +854,7 @@ links:
         </span>
         <a target="_blank" href="http://www.freecdn.pw/?zzlogo" title="免费云加速（FreeCDN），为您免费提供网站加速和网站防御（DDOS、CC攻击）" ><img src="http://www.freecdn.pw/images/zzlogo.png" width="150" height="80
           " alt="免费云加速（FreeCDN），为您免费提供网站加速和网站防御（DDOS、CC攻击）"></a>
+          <a target="_blank" href="http://www.freecdn.pw/?zzwz" title="免费云加速（FreeCDN），为您免费提供网站加速和网站防御（DDOS、CC攻击）" alt="免费云加速（FreeCDN），为您免费提供网站加速和网站防御（DDOS、CC攻击）">本站由免费云加速（FreeCDN）提供网站加速和攻击防御服务</a>
       </p>
     </div>
   </div><!-- .site-info -->
