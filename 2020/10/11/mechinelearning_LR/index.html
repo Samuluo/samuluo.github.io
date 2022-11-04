@@ -498,17 +498,19 @@
         
       </section>
       
+<!-- <script src='https://unpkg.com/valine@1.5.1/dist/Valine.min.js'></script> -->
 <div id="vcomments"></div>
 <script>
   window.onload = function(){
       
-      var valine = new Valine();
-      valine.init({
+      //var valine = new Valine();
+      console.log("adafsdfgsfgfdg")
+      new Valine({
         el: '#vcomments',
         appId: "",
         appKey: "",
-        path: window.location.pathname,
-        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+        //path: window.location.pathname,
+        //placeholder: "你是我一生只会遇见一次的惊喜 ..."
       })
   }
 </script>
@@ -578,7 +580,7 @@
   </div>
 </footer> -->
 <footer id="colophon" class="site-footer" role="contentinfo">
-  <script src="js/autoload.js"></script>
+  <script src="https://samuluo.github.io/js/autoload.js"></script>
   <!-- <script src="https://fastly.jsdelivr.net/gh/samuluo/live2d_cdn@0.0.3/autoload.js"></script> -->
   <!-- <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> -->
   <div class="site-info">
