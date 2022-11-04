@@ -418,7 +418,7 @@
 2 4 6 7（物品重量）
 6 10 12 13（物品价值）
 </code></pre><h2 id="2-递归解法"><a href="#2-递归解法" class="headerlink" title="2. 递归解法"></a>2. 递归解法</h2><p>  考虑到这个题目，用贪心算法显然是鼠目寸光的。所以思考其他思路。自顶向下地看这个题目，对于第n件物品而言，无非有两个状态（选择）：取或者不取。如果取，在获得这件物品价值地同时，也要承担其重量，如果不取，就无需承担，当然也得不到它的价值。满足无后效性。那么，这种问题就可以递归地求解了。</p>
-<pre><code class="lang-java">//返回第n件物品的最大价值,weight为背包剩余容量
+<pre><code class="java">//返回第n件物品的最大价值,weight为背包剩余容量
       int dfs(int n,int weight) {
     if(n==0||weight==0) return 0;//递归终止条件
           int a = dfs(n-1,weight]);//不取,直接返回n-1的状态,不消耗weight
@@ -427,7 +427,7 @@
     }
 </code></pre>
 <h2 id="3-优化递归：记忆化搜索"><a href="#3-优化递归：记忆化搜索" class="headerlink" title="3. 优化递归：记忆化搜索"></a>3. 优化递归：记忆化搜索</h2><p>对于上述递归解法，每求一次dfs(n)就要用到很多次dfs(2),dfs(3)等，而这些必须用一次算一次，增加了时间复杂度。所以，我们考虑使用一个数组把他们存起来，即记忆化搜索，又叫备忘录方法，这样就可以减小时间复杂度。</p>
-<pre><code class="lang-c++">int dp[100005];
+<pre><code class="c++">int dp[100005];
 int dfs(int n,int weight) {
     if(n==0||weight==0) return 0;//递归终止条件
     if(dp[n]!=-1) return dp[n];
@@ -442,7 +442,7 @@ int dfs(int n,int weight) {
 <h2 id="4-动态规划"><a href="#4-动态规划" class="headerlink" title="4.动态规划"></a>4.动态规划</h2><p>对于这类无后效性，备忘录的问题，使用动态规划显然是最佳解法。对于这个题，我们使用f[i][j]作为取第i件物品时容量为j的最大利润，即可推导出状态转移方程：</p>
 <p>$f[i][j] = max(f[i-1][j],f[i-1][j-w[i]]+v[i])$</p>
 <p>由此即可写出基本代码：</p>
-<pre><code class="lang-C++">for (int i = 1; i &lt;= n; i++) {
+<pre><code class="C++">for (int i = 1; i &lt;= n; i++) {
         for (int j = 1; j &lt;= m; j++) {
             if (w[i] &gt; j) {
                 f[i][j] = f[i - 1][j];
@@ -454,7 +454,7 @@ int dfs(int n,int weight) {
    }
 </code></pre>
 <h2 id="5-滚动数组"><a href="#5-滚动数组" class="headerlink" title="5.滚动数组"></a>5.滚动数组</h2><p>在这个过程中，我们发现所要的仅仅是f[n][m]，即n个物品容量为最大容量m时的情况，而前面n-1的数组迭代都是无意义的。因此，可以用一维数组代替二维数组，进一步优化空间复杂度。此时的状态转移方程如下：<br>    <strong>f[j] = max(f[j],f[j-w[i]]+v[i])</strong><br>此时得到的代码：</p>
-<pre><code class="lang-C++">for (int i = 1; i &lt;= n; i++) {
+<pre><code class="C++">for (int i = 1; i &lt;= n; i++) {
         for (int j = m; j &gt;=w[i]; j--) {
            f[j] = max(f[j],f[j-w[i]]+v[i]);
         }
@@ -490,19 +490,36 @@ int dfs(int n,int weight) {
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-        
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half previous">
           
-            <a href="/2021/10/12/singal_stft/" rel="next">
+            <a href="/2021/10/12/singal_stft/" rel="prev">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.pixabay.com/photo/2019/10/05/19/40/pumpkins-4528653_960_720.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.pixabay.com/photo/2019/10/05/19/40/pumpkins-4528653_960_720.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                Cross-Spectrum 交叉频谱</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/10/11/mechinelearning_LR/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.pixabay.com/photo/2014/08/15/11/29/beach-418742_960_720.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.pixabay.com/photo/2014/08/15/11/29/beach-418742_960_720.jpg">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                Cross-Spectrum 交叉频谱</h3>
+                【机器学习1】LR线性回归模型(linear regression)</h3>
                 <hr>
               </div>
             </a>

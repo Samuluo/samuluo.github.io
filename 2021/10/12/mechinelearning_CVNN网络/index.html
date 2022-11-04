@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Cross-Spectrum 交叉频谱 | samuluo</title>
+  <title itemprop="name">【机器学习2】LR线性回归模型(linear regression) | samuluo</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -383,15 +383,15 @@
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      Cross-Spectrum 交叉频谱</h1>
+      【机器学习2】LR线性回归模型(linear regression)</h1>
       <p class="entry-census">
         <span>
-          <a href="samuluo.cn">
-            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/custom/avatar.jpg">
+          <a href="samuluo.github.io">
+            <img src="http://cdn.para-dox.top/blog/09221645718431.jpg">
           </a>
         </span>
         <span>
-          <a href="samuluo.cn">samuluo</a>
+          <a href="samuluo.github.io">samuluo</a>
         </span>
         <span class="bull">
         ·</span>
@@ -409,8 +409,12 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="Cross-Spectrum-交叉频谱"><a href="#Cross-Spectrum-交叉频谱" class="headerlink" title="Cross-Spectrum 交叉频谱"></a>Cross-Spectrum 交叉频谱</h1><p>cross-spectrum，译作交叉谱，或者交叉频谱。cross-spectrum用来表征两个序列（时间相关）在某个（某些）频率组分上的相关程度，取值范围是0-1.其相位差则反映的是这两个时间序列之间的滞后关系，通常用正负来表征提前还是滞后。</p>
-<p>以一个图举例。看图中黄线，表示信号$x<em>{1l}’$和$x</em>{1r}’$的交叉谱曲线，纵轴为数值，横轴为无量纲频率组分。可以看到在低频段（如0.1$f_c$~0.5$f_c$)，两者的交叉谱数值较大(&gt;0.4)；在中频段（2$f_c$-5$f_c$)也较大，这表明在这些频段处两个时间信号的相关性较好，如果结合具体场景的话，可以推得谁是谁的起源，也即因果关系。而在高频段（如&gt;8$f_c$），两时间信号的交叉谱数值几乎为0，则表征两信号之间没有相关性。其他两条交叉谱曲线以此类推，不再赘述。<br><img src="./img/uTools_1666928247791.png" width="600"></p>
+          <h1 id="CVNN网络"><a href="#CVNN网络" class="headerlink" title="CVNN网络"></a>CVNN网络</h1><h2 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h2><h2 id="1-2-复数相关概念"><a href="#1-2-复数相关概念" class="headerlink" title="1.2 复数相关概念"></a>1.2 复数相关概念</h2><h3 id="1-2-1-实数有序对表示"><a href="#1-2-1-实数有序对表示" class="headerlink" title="1.2.1 实数有序对表示"></a>1.2.1 实数有序对表示</h3><p>​    加法和乘法的定义：<br>$$<br>z\equiv(x,y)<br>$$</p>
+<p>$$<br>(x_1,y_1) + (x_2,y_2) \equiv (x_1+y_1,x_2+y_2)             \tag{1.2.1}<br>$$</p>
+<p>$$<br>(x_1,y_1)\cdot (x_2,y_2) \equiv (x_1x_2-y_1y_2,x_1x_2+y_1y_2)\tag{1.2.2}<br>$$</p>
+<p>$$<br>\vert{z}\vert\equiv\sqrt{x^2+y^2}\tag{1.2.3}<br>$$</p>
+<p> 复数的乘法看起来很人为，但是这个定义(1.2.2)给复数带来了它独特的功能，即角度旋转，以及振幅放大/衰减，这是实分量和虚分量混合的结果。<br> 复数的逆：<br>$$<br>z^{-1} \equiv (\frac{x}{\vert z \vert^2},\frac{-y}{\vert z \vert^2})<br>$$</p>
+<h3 id="1-2-2-复数的-2-times2-矩阵表示"><a href="#1-2-2-复数的-2-times2-矩阵表示" class="headerlink" title="1.2.2  复数的$2\times2$矩阵表示"></a>1.2.2  复数的$2\times2$矩阵表示</h3><p>她如何如何和</p>
 
         </div>
         <!-- .entry-content -->
@@ -439,28 +443,11 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2021/10/12/mechinelearning_CVNN网络/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.pixabay.com/photo/2019/10/05/19/40/pumpkins-4528653_960_720.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.pixabay.com/photo/2019/10/05/19/40/pumpkins-4528653_960_720.jpg">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                【机器学习2】LR线性回归模型(linear regression)</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2021/10/12/algrithm_dp/" rel="next">
+            <a href="/2021/10/12/singal_stft/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.pixabay.com/photo/2019/10/05/19/40/pumpkins-4528653_960_720.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.pixabay.com/photo/2019/10/05/19/40/pumpkins-4528653_960_720.jpg">
               </div>
@@ -468,7 +455,7 @@
               Next Post</span>
               <div class="info">
                 <h3>
-                【动态规划1】01背包，完全背包与多重背包</h3>
+                Cross-Spectrum 交叉频谱</h3>
                 <hr>
               </div>
             </a>
@@ -508,11 +495,11 @@
 
       <section class="author-profile">
         <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-          <a href="samuluo.cn" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/custom/avatar.jpg" itemprop="image" alt="samuluo" height="70" width="70"></a>
+          <a href="samuluo.github.io" class="profile gravatar"><img src="http://cdn.para-dox.top/blog/09221645718431.jpg" itemprop="image" alt="samuluo" height="70" width="70"></a>
           <div class="meta">
             <span class="title">Author</span>
             <h3 itemprop="name">
-            <a href="samuluo.cn" itemprop="url" rel="author">samuluo</a>
+            <a href="samuluo.github.io" itemprop="url" rel="author">samuluo</a>
             </h3>
           </div>
         </div>
