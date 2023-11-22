@@ -410,12 +410,54 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="CVNN网络"><a href="#CVNN网络" class="headerlink" title="CVNN网络"></a>CVNN网络</h1><h2 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h2><h2 id="1-2-复数相关概念"><a href="#1-2-复数相关概念" class="headerlink" title="1.2 复数相关概念"></a>1.2 复数相关概念</h2><h3 id="1-2-1-实数有序对表示"><a href="#1-2-1-实数有序对表示" class="headerlink" title="1.2.1 实数有序对表示"></a>1.2.1 实数有序对表示</h3><p>​    加法和乘法的定义：<br>$$<br>z\equiv(x,y)<br>$$</p>
+          <h1 id="CVNN网络"><a href="#CVNN网络" class="headerlink" title="CVNN网络"></a>CVNN网络</h1><h2 id="1-概念原理"><a href="#1-概念原理" class="headerlink" title="1.概念原理"></a>1.概念原理</h2><h3 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h3><p>实数网络在图像领域取得极大成功，但在音频中，信号特征大多数是复数，如频谱等。简单分离实部虚部，或者考虑幅度和相位角都丢失了复数原本的关系。论文按照复数计算的定义，设计了深度复数网络，能对复数的输入数据进行卷积、激活、批规范化等操作。在音频信号的处理中，该网络应该有极大的优势。这里对论文提出的几种复数操作进行介绍，并给出简单的pytorch实现方法。</p>
+<p>虽然叫深度复数网络，但里面的操作实际上还是在实数空间进行的。通过实数实现复数计算的操作。</p>
+<h3 id="1-2-复数相关概念"><a href="#1-2-复数相关概念" class="headerlink" title="1.2 复数相关概念"></a>1.2 复数相关概念</h3><h4 id="1-2-1-实数有序对表示"><a href="#1-2-1-实数有序对表示" class="headerlink" title="1.2.1 实数有序对表示"></a>1.2.1 实数有序对表示</h4><p>​    加法和乘法的定义：<br>$$<br>z\equiv(x,y)<br>$$</p>
 <p>$$<br>(x_1,y_1) + (x_2,y_2) \equiv (x_1+y_1,x_2+y_2)             \tag{1.2.1}<br>$$</p>
-<p>$$<br>(x_1,y_1)\cdot (x_2,y_2) \equiv (x_1x_2-y_1y_2,x_1x_2+y_1y_2)\tag{1.2.2}<br>$$</p>
+<p>$$<br>(x_1,y_1) (x_2,y_2) \equiv (x_1x_2-y_1y_2,x_1x_2+y_1y_2)\tag{1.2.2}<br>$$</p>
 <p>$$<br>\vert{z}\vert\equiv\sqrt{x^2+y^2}\tag{1.2.3}<br>$$</p>
-<p> 复数的乘法看起来很人为，但是这个定义(1.2.2)给复数带来了它独特的功能，即角度旋转，以及振幅放大/衰减，这是实分量和虚分量混合的结果。<br> 复数的逆：<br>$$<br>z^{-1} \equiv (\frac{x}{\vert z \vert^2},\frac{-y}{\vert z \vert^2})<br>$$</p>
-<h3 id="1-2-2-复数的-2-times2-矩阵表示"><a href="#1-2-2-复数的-2-times2-矩阵表示" class="headerlink" title="1.2.2  复数的$2\times2$矩阵表示"></a>1.2.2  复数的$2\times2$矩阵表示</h3><p>她如何如何和</p>
+<p> 复数的乘法看起来很人为，但是这个定义(1.2.2)给复数带来了它独特的功能，即角度旋转，以及振幅放大/衰减，这是实分量和虚分量混合的结果。</p>
+<p> 复数的逆：<br>$$<br>z^{-1} \equiv (\frac{x}{\vert z \vert^2},\frac{-y}{\vert z \vert^2})<br>$$</p>
+<p>复数向量的内积:</p>
+<p>向量a的每个元素乘以向量b对应元素的共轭：如$a=\left[2+3i,1+i,i\right]$,$b=\left[1+i,i,3+i\right]$,则$a\cdot b=(2+3i)(1-i)+(1+i)(-i)+i(3-i)$</p>
+<h4 id="1-2-2-复数的-2-times2-矩阵表示"><a href="#1-2-2-复数的-2-times2-矩阵表示" class="headerlink" title="1.2.2  复数的$2\times2$矩阵表示"></a>1.2.2  复数的$2\times2$矩阵表示</h4><p>若设$i$为一个二维矩阵，则$i^2=-1$可表示为：<br>$$<br>\bm{J}^2 = -\bm{I} = \left[<br>\begin{matrix}<br>-1 &amp; 0 \\<br>0 &amp; -1 \<br>\end{matrix}<br>\right]<br>$$<br>解得：<br>$$\bm{J} = \left[\begin{matrix}<br> 0 &amp; -1 \\<br> 1 &amp; 0  \<br>\end{matrix}\right]<br>$$<br>所以任意一个复数都可以表示为$2\times2$矩阵的形式：<br>$$z = a+bi = aE+bI\<br>=\left[\begin{matrix}<br> a &amp; -b \\<br> b &amp; a \<br>\end{matrix}\right]$$<br>这样定义复数，通过矩阵运算即可表示复数的加减乘除,并且我们通过转轴公式，可以清楚地发现这种矩阵表达了旋转角度和振幅放大/衰减：<br>$$<br>\left[\begin{matrix}<br> a &amp; -b \\<br> b &amp; a \<br>\end{matrix}\right] = r\left[\begin{matrix}<br> \cos\theta &amp; -\sin \theta \\<br> \sin \theta &amp; \cos \theta \<br>\end{matrix}\right]<br>$$<br>式中，r为复数的模长，$\theta$为复数的辅角主值（方向向量与实轴的夹角）。在乘法计算中，r和$\theta$分别为应用于信号的振幅和旋转角度的放大/衰减。复杂乘法中的“旋转”作为一个基本过程，实现了对自由度的有利降低。</p>
+<h2 id="2-具体实现过程"><a href="#2-具体实现过程" class="headerlink" title="2.具体实现过程"></a>2.具体实现过程</h2><h3 id="2-1-复数卷积的实现"><a href="#2-1-复数卷积的实现" class="headerlink" title="2.1 复数卷积的实现"></a>2.1 复数卷积的实现</h3><p>与实数一样，复数卷积也有自己的实现方式，设a，b均为复数矩阵:<br>$$<br>a = [1+i,2+i,3+i]<br>$$<br>$$<br>b = [4+i,1+2i,3+i]<br>$$<br>那么a的实部矩阵<br>$$<br>a_{Re}=[1,2,3]<br>$$<br>虚部矩阵<br>$$<br>a_{Im}=[1,1,1]<br>$$<br>同理，b的实部矩阵<br>$$<br>b_{Re}=[4,1,3]<br>$$<br>虚部矩阵<br>$$<br>b_{Im}=[1,2,1]<br>$$<br>那么$conv(a,b)$就定义为：<br>$$<br>conv(a,b) = (c_{RR}-c_{II})+(c_{RI}+c_{IR})i\tag{2.1}<br>$$<br>其中：<br>$$<br>c_{RR} = conv(a_{Re},b_{Re})<br>$$<br>$$<br>c_{RI} = conv(a_{Re},b_{Im})<br>$$<br>$$<br>c_{II} = conv(a_{Im},b_{Im})<br>$$<br>$$<br>c_{IR} = conv(a_{Im},b_{Re})<br>$$<br>或者直接用矩阵表示：<br>$$<br>\left[\begin{matrix}<br> Re(W<em>h) \\<br> Im(W</em>h) \<br>\end{matrix}\right]=<br>\left[\begin{matrix}<br>    W_{Re}&amp; -W_{Im} \\<br>    W_{Im}&amp; W_{Re}<br>\end{matrix}\right]\left[\begin{matrix}<br>    h_{Re} \\<br>    h_{Im}<br>\end{matrix}\right]<br>$$<br>即可得出卷积结果的实部和虚部。</p>
+<p>同理，可以重写其他神经网络方法，如全连接Linear，转置卷积ConvTranspose2d等，保持2.1不变，只需要将对应的c修改即可。</p>
+<pre><code class="python">#2.1对应的代码
+def apply_complex(fr, fi, input, dtype = torch.complex64):
+    return (fr(input.real)-fi(input.imag)).type(torch.complex64) \
+            + 1j*(fr(input.imag)+fi(input.real)).type(torch.complex64)
+</code></pre>
+<h3 id="2-2-复数的反向传播实现"><a href="#2-2-复数的反向传播实现" class="headerlink" title="2.2 复数的反向传播实现"></a>2.2 复数的反向传播实现</h3><p>为了在复数神经网络中进行反向传播，一个充分条件是网络训练的目标函数和激活函数对网络中每个 complex parameter 的实部和虚部都是可微的。通常损失函数都是实数，则复数 链式法则 如下：</p>
+<p>  如果$L$是实数损失函数，$z$为复变量，满足$z=x+iy,y \in R$,则有：<br>  $$\nabla_L{(z)} = \frac{\alpha_L}{\alpha_z} = \frac{\alpha_L}{\alpha_x}+i\frac{\alpha_L}{\alpha_y}<br>  =\frac{\alpha_L}{ \alpha_{R(z)} }+i\frac{\alpha_L}{\alpha_{I(z)} }=R(\nabla_L{(z)})+iI(\nabla_L{(z)})<br>  $$</p>
+<h3 id="2-3-复数的激活函数实现"><a href="#2-3-复数的激活函数实现" class="headerlink" title="2.3 复数的激活函数实现"></a>2.3 复数的激活函数实现</h3><p>重要问题：函数是否连续可微（<del>是否纯真</del>）？</p>
+<p><strong>柯西-黎曼方程</strong>：<br>一个解析函数的解析性/纯 (Holomorphism, analyticity) 确保一个复变函数在其域中的每个点的邻域中都是可微的。假设有复变函数$f$,和一个函数$z = x+iy$,并有：<br>$$<br>f(z) = u(x,y)+iv(x,y)<br>$$<br>其中u，v均为实函数。这就说明$f$的导数，$f^\prime(z)=\lim_{\Delta z\to0}{\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}}$在$z_0$的邻域内都存在。<br>当$\Delta z$沿着实轴x方向逼近0时，有：<br>$$<br>f^\prime(z)=\lim_{\Delta y\to0}{\frac{\Delta u(x_0,y_0)-i\Delta v(x_0,y_0)}{\Delta x+i\Delta 0} }<br>$$<br>沿着虚轴y方向逼近0：<br>$$<br>f^\prime(z)=\lim_{\Delta x\to0}{\frac{\Delta u(x_0,y_0)-i\Delta v(x_0,y_0)}{\Delta 0+i\Delta y} }<br>$$<br>所以：<br>$$<br>\frac{\alpha_u}{\alpha_z} = \frac{\alpha_u}{\alpha_x}+i\frac{\alpha_v}{\alpha_x} = -i\frac{\alpha_u}{\alpha_y}+\frac{\alpha_v}{\alpha_y}<br>$$<br>所以，柯西-黎曼方程为：<br>$$<br>\frac{\alpha_u}{\alpha_x}=\frac{\alpha_v}{\alpha_y};<br>\frac{\alpha_v}{\alpha_x}=-\frac{\alpha_u}{\alpha_y}<br>$$<br>主要用于判断$f(z)$是否可微。</p>
+<p><strong>复数激活函数需要满足Cauchy-Riemann Equations才能进行复数微分操作</strong></p>
+<h4 id="2-3-1-modRelu和zRelu"><a href="#2-3-1-modRelu和zRelu" class="headerlink" title="2.3.1 modRelu和zRelu"></a>2.3.1 modRelu和zRelu</h4><p>复数激活函数在之前的工作里面已有研究：modReLU 和 zReLU。modReLU 可以表示为：<br>$$<br>modRelu(z) = Relu(\vert z\vert +b)e^{i\theta_z}=\begin{cases}<br>(\vert z\vert +b)\frac{z}{\vert z\vert},\quad \vert z\vert +b\geq 0\<br>0, \quad otherwise<br>\end{cases}<br>$$<br>$\theta_z$是$z$的相位，$b$是可学习的参数。设置参数$b$  的原因是$\vert z\vert$总是正的，所以参数$b$使得激活函数可以到达 dead zone 的位置。modReLU 的特点是激活函数前后复数的相位是不变的，但是modReLU 激活函数不满足柯西-黎曼方程 (Cauchy–Riemann Equations)，因此它不是解析的。而复数激活函数需要满足 Cauchy-Riemann Equations 才是解析的，才能进行复数微分操作。</p>
+<p>对于zRelu：<br>$$<br>zRelu(z) =\begin{cases}<br>z,\quad \theta_z \in [0,\frac{\pi}{2}]\<br>0, \quad otherwise<br>\end{cases}<br>$$<br>zReLU 在实部x和虚部y的正半轴同样不满足 Cauchy-Riemann Equations。</p>
+<h4 id="2-3-2-CRelu"><a href="#2-3-2-CRelu" class="headerlink" title="2.3.2 CRelu"></a>2.3.2 CRelu</h4><p>CReLU 激活函数的设计初衷是要满足柯西-黎曼方程 (Cauchy–Riemann Equation)，所以 CReLU 激活函数分别在实部和虚部上进行激活操作，即：<br>$$<br>CRelu(z) = Relu(z_R)+iRelu(z_I)<br>$$<br>当实部和虚部同时为严格正或严格负时，CReLU 激活函数满足 Cauchy-Riemann Equations。</p>
+<pre><code class="python">def complex_relu(input):
+    return relu(input.real).type(torch.complex64)+1j*relu(input.imag).type(torch.complex64)
+</code></pre>
+<p>不管是Relu，LeakyRelu还是PRelu，均可用上述规则实现。</p>
+<p>这些虽然都不是全纯激活函数，但是根据Hirose的论文，实现反向传播不需要严格全纯，只需实部和虚部可微就行。</p>
+<p>但值得一提的是，全纯函数可以提高计算效率。正如Sarroff等( 2015 )所指出的，使用全纯函数可以共享梯度值(因为激活函数满足附录中的Cauchy - Riemann方程11和12 )。因此，不需要计算和反向传播4个不同的梯度，只需要2个。</p>
+<h3 id="2-4-复数Dropout实现"><a href="#2-4-复数Dropout实现" class="headerlink" title="2.4 复数Dropout实现"></a>2.4 复数Dropout实现</h3><p>随机的将实部虚部同时置为0，再加倍，实测是将实虚部同时置0/放大，与实值dropout基本一致。</p>
+<pre><code class="python">def complex_dropout2d(input, p=0.5, training=True):
+    # need to have the same dropout mask for real and imaginary part, 
+    # this not a clean solution!
+    mask = torch.ones(*input.shape, dtype = torch.float32, device=torch.device(&quot;cuda:0&quot;))
+    mask = dropout(mask, p, training)*1/(1-p)
+    mask.type(input.dtype)
+    return mask*input
+</code></pre>
+<h3 id="2-6-复数神经网络的度量方法：欧几里得方法与复内积"><a href="#2-6-复数神经网络的度量方法：欧几里得方法与复内积" class="headerlink" title="2.6 复数神经网络的度量方法：欧几里得方法与复内积"></a>2.6 复数神经网络的度量方法：欧几里得方法与复内积</h3><h4 id="2-6-1-欧几里得方法"><a href="#2-6-1-欧几里得方法" class="headerlink" title="2.6.1 欧几里得方法"></a>2.6.1 欧几里得方法</h4><p>   传统神经网络的输出值$\hat{v}$和实际值$v$在实数下的度量可以很容易的用欧几里得距离表示：${\lvert \lvert z-w_c \lvert\lvert}$，对于复数同样适用。复数的欧几里得度量表示为振幅的最小值时的z：<br>   $$<br>   L(v_c,\hat v_c) = \arg\min{\vert\vert v_c-\hat v_c\vert\vert}<br>   $$<br>   其中,${\lvert \lvert z-w_c \lvert\lvert}$表示欧氏范数，即：<br>$${\lvert \lvert v-\hat v \lvert\lvert} ^2= (v-\hat v)\cdot(v-\hat v) = {\lvert \lvert v \lvert\lvert} ^2+{\lvert \lvert \hat v \lvert\lvert} ^2-2Re(v\cdot \hat v)={\lvert \lvert v \lvert\lvert} ^2+{\lvert \lvert \hat v \lvert\lvert} ^2-2\sum_{i}{\vert v\vert\vert \hat v\vert}\cos(\theta_v-\theta_{\hat v})<br>$$</p>
+<h4 id="2-6-2-复内积-余弦距离"><a href="#2-6-2-复内积-余弦距离" class="headerlink" title="2.6.2 复内积/余弦距离"></a>2.6.2 复内积/余弦距离</h4><p>相比欧氏距离，余弦距离更加注重两个向量在方向上的差异。由复数可以一一映射在复平面向量上，使用余弦距离可以反映复数角度的差异，对信号的相干性也更加敏感。论文中用到作为损失函数。<br>$$<br>L(v,\hat v) = 1- \frac{v \cdot \hat v}{\vert v\vert \vert \hat v\vert}<br>$$</p>
+<h2 id="复数的批标准化"><a href="#复数的批标准化" class="headerlink" title="复数的批标准化"></a>复数的批标准化</h2><p>$$<br>\mu = E\left[x\right]  \tag{mini-batch mean}<br>$$<br>$$<br>\Gamma = \left[\begin{matrix}<br> V_{rr}  &amp; V_{ri}\<br> V_{ir}  &amp; V_{ii}\<br>\end{matrix}\right]= \left[\begin{matrix}<br> Cov(x_R,x_R)  &amp; Cov(x_R,x_I\<br>Cov(x_I,x_R) &amp; Cov(x_I,x_I)\<br>\end{matrix}\right]=  \tag{mini-batch covariance}<br>$$<br>$$<br>\tilde{x} = (\Gamma)^{-\frac{1}{2}}(x-\mu) \tag{normalize}<br>$$<br>$$<br>BN(\tilde{x}) = \gamma\tilde{x}+\beta \tag{scale and shift}<br>$$</p>
+<h2 id="短时均方根能量"><a href="#短时均方根能量" class="headerlink" title="短时均方根能量"></a>短时均方根能量</h2><p>$$<br>E_t = \sqrt{\frac{1}{N}\sum_{n=1}^N{x_t^2(n)}}<br>$$</p>
+<h2 id="短时过零率"><a href="#短时过零率" class="headerlink" title="短时过零率"></a>短时过零率</h2><p>短时过零率（Zero Crossing Rate，ZCR）是指每个语音帧信号符号变化的次数，即 语音信号由负变正或由正变负的次数。</p>
+<p>$$<br>Z_t = \sum_{n=1}^N\vert sgn\left[x_t(n)\right]-sgn\left[x_t(n-1)\right]<br>$$</p>
+<p>$$<br>sgn\left[x_t(n)\right] = \begin{cases}<br>1,\quad x_t(n)\geq 0\<br>0, \quad otherwise<br>\end{cases}<br>$$</p>
 
         </div>
         <!-- .entry-content -->
@@ -444,11 +486,28 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2022/12/01/torch_stack/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                </h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
         
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half next">
           
-            <a href="/2021/10/12/algrithm_dp/" rel="next">
+            <a href="/2022/10/12/pyroomacostics/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.pixabay.com/photo/2019/10/05/19/40/pumpkins-4528653_960_720.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.pixabay.com/photo/2019/10/05/19/40/pumpkins-4528653_960_720.jpg">
               </div>
@@ -456,7 +515,7 @@
               Next Post</span>
               <div class="info">
                 <h3>
-                【动态规划1】01背包，完全背包与多重背包</h3>
+                【信号处理1】pyroomacostics</h3>
                 <hr>
               </div>
             </a>
@@ -550,13 +609,13 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2022 samuluo<br>
+      &copy; 2023 samuluo<br>
       powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer> -->
 <footer id="colophon" class="site-footer" role="contentinfo">
-  <script src="https://fastly.jsdelivr.net/gh/samuluo/blog_cdn@master/live2d/autoload.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/samuluo/blog_cdn@master/live2d/autoload.js"></script>
   <!-- <script src="https://fastly.jsdelivr.net/gh/samuluo/live2d_cdn@0.0.3/autoload.js"></script> -->
   <!-- <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> -->
   <div class="site-info">
